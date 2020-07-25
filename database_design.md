@@ -20,19 +20,110 @@ For this we will need a users table in the database with 3 columns:
 
 #### Users create ads with a title and description and category.
 
-For this we will need a ads table in the database with 4 columns:
+For this we will need a ads table in the database with 3 columns:
 
-* id 
+* id
+* title
+* description
+
+We won't add the the category right now since each add can belong to multiple categories.
 
 #### Each ad is associated with the user that created it.
 
+For this we will need to add 1 column to the ads table:
+
+* user_id
+
 #### An ad can be in one or more categories (for example, "help wanted", "giveaway", or "furniture")
+
+
 
 ### Creation
 
 #### First let's sketch out the database:
 
 ![Sketch of adlister database that shows the relationships between the tables](adlister_database_sketch.jpg)
+
+#### Now let's write the SQL to make these tables
+
+##### Users:
+
+```mysql
+CREATE TABLE users (
+	id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+	email NVARCHAR(254) NOT NULL,
+	passw VARCHAR(30) NOT NULL,
+	PRIMARY KEY (id)
+);
+```
+
+```mysql
+INSERT INTO users(email, passw) VALUES
+	('coolcat93@gmail.com', 'catsarec00l'),
+	('fancypants@yahoo.com', 'shiny_trousers_93'),
+	('hardrocklife@hotmail.com', 'needMOREcowbell1234');
+```
+
+##### Ads:
+
+```mysql
+CREATE TABLE ads (
+	id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+	title VARCHAR(120) NOT NULL,
+	description TEXT NOT NULL,
+	user_id INTEGER UNSIGNED NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (user_id) REFERENCES users(id)
+);
+```
+
+``` mysql
+INSERT INTO ads(title, description, user_id) VALUES
+	('Take my Couch!', 'I have a couch that is a little smelly now so you can have it.', 1),
+	('COWBELL PLAYER NEEDED', 'My band has a gig coming up and we lost our cowbell player. We can offer you free drinks and a portion of our tips.', 3),
+	('FREE TICKETS!!!', 'Come see an awesome concert! Brand new cowbell player! Lots of great songs!', 3),
+	('Will Trade For Pants', 'I have like cool pants so send me a pic of the pants and I trade you something for them.', 2);
+```
+##### Categories
+
+```mysql
+CREATE TABLE categories(
+	id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+	cat VARCHAR(30),
+	PRIMARY KEY (id)
+);
+```
+
+```mysql
+INSERT INTO categories(cat) VALUES
+	('Help Wanted'),
+	('Giveaway'),
+	('Furniture'),
+	('Trade'),
+	('Clothing');
+```
+
+##### Ad_category Join Table
+
+```mysql
+CREATE TABLE ad_category(
+	ad_id INTEGER UNSIGNED NOT NULL,
+	cat_id INTEGER UNSIGNED NOT NULL,
+	FOREIGN KEY (ad_id) REFERENCES ads(id),
+	FOREIGN KEY (cat_id) REFERENCES categories(id)
+);
+```
+
+```mysql
+INSERT INTO ad_category(ad_id, cat_id) VALUES
+	(1, 2),
+	(1, 3),
+	(2, 1),
+	(3, 2),
+	(4, 4),
+	(4, 5);
+```
+
 
 ## Queries
 
