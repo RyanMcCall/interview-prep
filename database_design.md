@@ -26,7 +26,7 @@ For this we will need a ads table in the database with 3 columns:
 * title
 * description
 
-We won't add the the category right now since each add can belong to multiple categories.
+We won't add the the category right now since each ad can belong to multiple categories.
 
 #### Each ad is associated with the user that created it.
 
@@ -34,8 +34,18 @@ For this we will need to add 1 column to the ads table:
 
 * user_id
 
-#### An ad can be in one or more categories (for example, "help wanted", "giveaway", or "furniture")
+#### An ad can be in one or more categories (for example, "help wanted", "giveaway", or "furniture"):
 
+For this we will need to create two tables since this causes a many to many relationship:
+
+* categories
+    * ad_id
+    * cat_id
+* ad_category
+    * id
+    * category
+    
+This will allow us to efficiently story all categories that an add belongs to.
 
 
 ### Creation
