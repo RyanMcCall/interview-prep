@@ -177,10 +177,52 @@ INSERT INTO ad_category(ad_id, cat_id) VALUES
 
 Write SQL queries to answer the following questions:
 
-1. For a given ad, what is the email address of the user that created it?
+### 1. For a given ad, what is the email address of the user that created it?
+
+#### Query:
+
+```mysql
+SELECT title, description, email
+FROM ads a
+JOIN users u ON u.id  = a.user_id
+```
+
+#### Results:
+
+| title                 | description                                                                                                         | email                    |
+|-----------------------|---------------------------------------------------------------------------------------------------------------------|--------------------------|
+| Take my Couch!        | I have a couch that is a little smelly now so you can have it.                                                      | coolcat93@gmail.com      |
+| COWBELL PLAYER NEEDED | My band has a gig coming up and we lost our cowbell player. We can offer you free drinks and a portion of our tips. | coolcat93@gmail.com      |
+| FREE TICKETS!!!       | Come see an awesome concert! Brand new cowbell player! Lots of great songs!                                         | hardrocklife@hotmail.com |
+| Will Trade For Pants  | I have like cool pants so send me a pic of the pants and I trade you something for them.                            | fancypants@yahoo.com     |
+
+### 2. For a given ad, what category, or categories, does it belong to?
+
+
+```mysql
+SELECT title, description, cat
+FROM ads a
+JOIN ad_category ac ON ac.ad_id  = a.id
+JOIN categories c ON ac.cat_id = c.id
+```
+
+| title                 | description                                                                                                         | cat         |
+|-----------------------|---------------------------------------------------------------------------------------------------------------------|-------------|
+| Take my Couch!        | I have a couch that is a little smelly now so you can have it.                                                      | Giveaway    |
+| Take my Couch!        | I have a couch that is a little smelly now so you can have it.                                                      | Furniture   |
+| COWBELL PLAYER NEEDED | My band has a gig coming up and we lost our cowbell player. We can offer you free drinks and a portion of our tips. | Help Wanted |
+| FREE TICKETS!!!       | Come see an awesome concert! Brand new cowbell player! Lots of great songs!                                         | Giveaway    |
+| Will Trade For Pants  | I have like cool pants so send me a pic of the pants and I trade you something for them.                            | Trade       |
+| Will Trade For Pants  | I have like cool pants so send me a pic of the pants and I trade you something for them.                            | Clothing    |
+
+### 3. For a given category, show all the ads that are in that category.
+
+#### Query:
 
 
 
-2. For a given ad, what category, or categories, does it belong to?
-3. For a given category, show all the ads that are in that category.
+#### Results:
+
+
+
 4. For a given user, show all the ads they have posted.
