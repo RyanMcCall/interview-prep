@@ -198,6 +198,7 @@ JOIN users u ON u.id  = a.user_id
 
 ### 2. For a given ad, what category, or categories, does it belong to?
 
+#### Query:
 
 ```mysql
 SELECT title, description, cat
@@ -205,6 +206,8 @@ FROM ads a
 JOIN ad_category ac ON ac.ad_id  = a.id
 JOIN categories c ON ac.cat_id = c.id
 ```
+
+#### Results:
 
 | title                 | description                                                                                                         | cat         |
 |-----------------------|---------------------------------------------------------------------------------------------------------------------|-------------|
@@ -219,10 +222,35 @@ JOIN categories c ON ac.cat_id = c.id
 
 #### Query:
 
-
+```mysql
+SELECT cat, title, description
+FROM ads a
+JOIN ad_category ac ON ac.ad_id  = a.id
+JOIN categories c ON ac.cat_id = c.id
+WHERE cat = 'Giveaway'
+```
 
 #### Results:
 
+| cat      | title           | description                                                                 |
+|----------|-----------------|-----------------------------------------------------------------------------|
+| Giveaway | Take my Couch!  | I have a couch that is a little smelly now so you can have it.              |
+| Giveaway | FREE TICKETS!!! | Come see an awesome concert! Brand new cowbell player! Lots of great songs! |
 
+### 4. For a given user, show all the ads they have posted.
 
-4. For a given user, show all the ads they have posted.
+#### Query:
+
+```mysql
+SELECT user_id, email, title, description
+FROM ads a
+JOIN users u ON u.id = a.user_id
+WHERE user_id = 3
+```
+
+#### Results:
+
+| user_id | email                    | title                 | description                                                                                                         |
+|---------|--------------------------|-----------------------|---------------------------------------------------------------------------------------------------------------------|
+| 3       | hardrocklife@hotmail.com | COWBELL PLAYER NEEDED | My band has a gig coming up and we lost our cowbell player. We can offer you free drinks and a portion of our tips. |
+| 3       | hardrocklife@hotmail.com | FREE TICKETS!!!       | Come see an awesome concert! Brand new cowbell player! Lots of great songs!                                         |
