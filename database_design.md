@@ -74,6 +74,14 @@ INSERT INTO users(email, passw) VALUES
 	('hardrocklife@hotmail.com', 'needMOREcowbell1234');
 ```
 
+**Results**:
+
+| id | email                    | passw               |
+|----|--------------------------|---------------------|
+| 1  | coolcat93@gmail.com      | catsarec00l         |
+| 2  | fancypants@yahoo.com     | shiny_trousers_93   |
+| 3  | hardrocklife@hotmail.com | needMOREcowbell1234 |
+
 ##### Ads:
 
 ```mysql
@@ -94,6 +102,16 @@ INSERT INTO ads(title, description, user_id) VALUES
 	('FREE TICKETS!!!', 'Come see an awesome concert! Brand new cowbell player! Lots of great songs!', 3),
 	('Will Trade For Pants', 'I have like cool pants so send me a pic of the pants and I trade you something for them.', 2);
 ```
+
+**Results**:
+
+| id | title                 | description                                                                                                         | user_id |
+|----|-----------------------|---------------------------------------------------------------------------------------------------------------------|---------|
+| 1  | Take my Couch!        | I have a couch that is a little smelly now so you can have it.                                                      | 1       |
+| 2  | COWBELL PLAYER NEEDED | My band has a gig coming up and we lost our cowbell player. We can offer you free drinks and a portion of our tips. | 3       |
+| 3  | FREE TICKETS!!!       | Come see an awesome concert! Brand new cowbell player! Lots of great songs!                                         | 3       |
+| 4  | Will Trade For Pants  | I have like cool pants so send me a pic of the pants and I trade you something for them.                            | 2       |
+
 ##### Categories
 
 ```mysql
@@ -112,6 +130,16 @@ INSERT INTO categories(cat) VALUES
 	('Trade'),
 	('Clothing');
 ```
+
+**Results**:
+
+| id | cat         |
+|----|-------------|
+| 1  | Help Wanted |
+| 2  | Giveaway    |
+| 3  | Furniture   |
+| 4  | Trade       |
+| 5  | Clothing    |
 
 ##### Ad_category Join Table
 
@@ -134,12 +162,25 @@ INSERT INTO ad_category(ad_id, cat_id) VALUES
 	(4, 5);
 ```
 
+**Results**
+
+| ad_id | cat_id |
+|-------|--------|
+| 1     | 2      |
+| 1     | 3      |
+| 2     | 1      |
+| 3     | 2      |
+| 4     | 4      |
+| 4     | 5      |
 
 ## Queries
 
 Write SQL queries to answer the following questions:
 
 1. For a given ad, what is the email address of the user that created it?
+
+
+
 2. For a given ad, what category, or categories, does it belong to?
 3. For a given category, show all the ads that are in that category.
 4. For a given user, show all the ads they have posted.
