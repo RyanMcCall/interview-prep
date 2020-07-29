@@ -173,13 +173,13 @@ INSERT INTO ad_category(ad_id, cat_id) VALUES
 | 4     | 4      |
 | 4     | 5      |
 
-## Queries
+### Queries
 
 Write SQL queries to answer the following questions:
 
-### 1. For a given ad, what is the email address of the user that created it?
+#### 1. For a given ad, what is the email address of the user that created it?
 
-#### Query:
+##### Query:
 
 ```mysql
 SELECT title, description, email
@@ -187,7 +187,7 @@ FROM ads a
 JOIN users u ON u.id  = a.user_id
 ```
 
-#### Results:
+##### Results:
 
 | title                 | description                                                                                                         | email                    |
 |-----------------------|---------------------------------------------------------------------------------------------------------------------|--------------------------|
@@ -196,9 +196,9 @@ JOIN users u ON u.id  = a.user_id
 | FREE TICKETS!!!       | Come see an awesome concert! Brand new cowbell player! Lots of great songs!                                         | hardrocklife@hotmail.com |
 | Will Trade For Pants  | I have like cool pants so send me a pic of the pants and I trade you something for them.                            | fancypants@yahoo.com     |
 
-### 2. For a given ad, what category, or categories, does it belong to?
+#### 2. For a given ad, what category, or categories, does it belong to?
 
-#### Query:
+##### Query:
 
 ```mysql
 SELECT title, description, cat
@@ -207,7 +207,7 @@ JOIN ad_category ac ON ac.ad_id  = a.id
 JOIN categories c ON ac.cat_id = c.id
 ```
 
-#### Results:
+##### Results:
 
 | title                 | description                                                                                                         | cat         |
 |-----------------------|---------------------------------------------------------------------------------------------------------------------|-------------|
@@ -218,9 +218,9 @@ JOIN categories c ON ac.cat_id = c.id
 | Will Trade For Pants  | I have like cool pants so send me a pic of the pants and I trade you something for them.                            | Trade       |
 | Will Trade For Pants  | I have like cool pants so send me a pic of the pants and I trade you something for them.                            | Clothing    |
 
-### 3. For a given category, show all the ads that are in that category.
+#### 3. For a given category, show all the ads that are in that category.
 
-#### Query:
+##### Query:
 
 ```mysql
 SELECT cat, title, description
@@ -230,16 +230,16 @@ JOIN categories c ON ac.cat_id = c.id
 WHERE cat = 'Giveaway'
 ```
 
-#### Results:
+##### Results:
 
 | cat      | title           | description                                                                 |
 |----------|-----------------|-----------------------------------------------------------------------------|
 | Giveaway | Take my Couch!  | I have a couch that is a little smelly now so you can have it.              |
 | Giveaway | FREE TICKETS!!! | Come see an awesome concert! Brand new cowbell player! Lots of great songs! |
 
-### 4. For a given user, show all the ads they have posted.
+#### 4. For a given user, show all the ads they have posted.
 
-#### Query:
+##### Query:
 
 ```mysql
 SELECT user_id, email, title, description
@@ -248,7 +248,7 @@ JOIN users u ON u.id = a.user_id
 WHERE user_id = 3
 ```
 
-#### Results:
+##### Results:
 
 | user_id | email                    | title                 | description                                                                                                         |
 |---------|--------------------------|-----------------------|---------------------------------------------------------------------------------------------------------------------|
